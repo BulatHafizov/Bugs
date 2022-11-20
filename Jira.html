@@ -1,0 +1,1608 @@
+<html
+        xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<title>Jira</title>
+<style type="text/css">
+table {
+    mso-displayed-decimal-separator:"\,";
+    mso-displayed-thousand-separator:" ";
+}
+body
+{
+    margin: 0px;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    color:black;
+}
+
+</style>
+<META HTTP-EQUIV="Content-Type" Content="application/vnd.ms-excel; charset=UTF-8">
+<!-- JRA-7598 - ensure fields (e.g. description) occupy only one cell - even fields containing newlines. -->
+<!--
+Vertical align all cells to the top, in order to align all issue rows of issuetable to the top,
+since Excel does not use or save the css files it is hardcoded here.
+-->
+<style>
+@page
+{
+mso-page-orientation:landscape;
+margin:.25in .25in .5in .25in;
+mso-header-margin:.5in;
+mso-footer-margin:.25in;
+mso-footer-data:"&R&P of &N";
+mso-horizontal-page-align:center;
+mso-vertical-page-align:center;
+}
+
+td.issuekey,
+td.issuetype,
+td.status {
+    mso-style-parent: "";
+    mso-number-format: \@;
+    text-align: left;
+}
+br
+{
+    mso-data-placement:same-cell;
+}
+
+td
+{
+    vertical-align: top;
+}
+</style>
+
+<!--[if gte mso 9]><xml>
+<x:ExcelWorkbook>
+<x:ExcelWorksheets>
+<x:ExcelWorksheet>
+<x:Name>general_report</x:Name>
+<x:WorksheetOptions>
+<x:Print>
+<x:ValidPrinterInfo/>
+</x:Print>
+</x:WorksheetOptions>
+</x:ExcelWorksheet>
+</x:ExcelWorksheets>
+</x:ExcelWorkbook>
+</xml><![endif]-->
+</head>
+<body>
+
+<table border="1">
+    <tr bgcolor="#205081" height="30">
+        <td colspan="74">
+            <img src="https://bezumec.atlassian.net/images/icon-jira-software-logo.png" width="57" height="30" border="0" alt="Jira">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="74">
+            <a href="https://bezumec.atlassian.net/issues/?jql=project+%3D+%22MP%22+ORDER+BY+created+DESC">Jira</a>
+        </td>
+    </tr>
+    <tr>
+                <td colspan="74">
+            Отображение <strong>11</strong> задач в <strong>20/ноя/22 5:25 PM</strong>.
+        </td>
+    </tr>
+</table>
+
+
+
+
+                                        <table id="issuetable" class="aui " border="1" cellpadding="3" cellspacing="1" width="100%">
+                        <thead>
+        <tr class="rowHeader">
+            
+                                                            <th class="colHeaderLink headerrow-project" data-id="project">
+                                                        Проект
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-issuekey" data-id="issuekey">
+                                                        Ключ
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-summary" data-id="summary">
+                                                        Pезюме
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-issuetype" data-id="issuetype">
+                                                        Тип задачи
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-status" data-id="status">
+                                                        Статус
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-priority" data-id="priority">
+                                                        Приоритет
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-resolution" data-id="resolution">
+                                                        Решение
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-assignee" data-id="assignee">
+                                                        Исполнитель
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-reporter" data-id="reporter">
+                                                        Автор
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-creator" data-id="creator">
+                                                        Создатель
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-created" data-id="created">
+                                                        Создано
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-lastViewed" data-id="lastViewed">
+                                                        Последний просмотр
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-updated" data-id="updated">
+                                                        Обновлено
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-resolutiondate" data-id="resolutiondate">
+                                                        Решено
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-versions" data-id="versions">
+                                                        Версии Affects
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-fixVersions" data-id="fixVersions">
+                                                        Версии исправления
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-components" data-id="components">
+                                                        Компоненты
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-duedate" data-id="duedate">
+                                                        Срок исполнения
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-votes" data-id="votes">
+                                                        Голоса
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-watches" data-id="watches">
+                                                        Наблюдатели
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-thumbnail" data-id="thumbnail">
+                                                        Изображения
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-timeoriginalestimate" data-id="timeoriginalestimate">
+                                                        Исходная оценка
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-timeestimate" data-id="timeestimate">
+                                                        Оценка остатка
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-timespent" data-id="timespent">
+                                                        Затраченное время
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-workratio" data-id="workratio">
+                                                        КПД (полезная работа/затраченная работа)
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-subtasks" data-id="subtasks">
+                                                        Подзадачи
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-issuelinks" data-id="issuelinks">
+                                                        Связанные задачи
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-environment" data-id="environment">
+                                                        Среда
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-description" data-id="description">
+                                                        Описание
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-security" data-id="security">
+                                                        Уровень безопасности
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-progress" data-id="progress">
+                                                        Прогресс
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-aggregateprogress" data-id="aggregateprogress">
+                                                        Суммарный прогресс
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-aggregatetimespent" data-id="aggregatetimespent">
+                                                        Суммарное затраченое время
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-aggregatetimeestimate" data-id="aggregatetimeestimate">
+                                                        Суммарная оценка остатка
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-aggregatetimeoriginalestimate" data-id="aggregatetimeoriginalestimate">
+                                                        Суммарная первоначальная оценка
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-labels" data-id="labels">
+                                                        Метки
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-statuscategorychangedate" data-id="statuscategorychangedate">
+                                                        Дата изменения категории статуса
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-statusCategory" data-id="statusCategory">
+                                                        Категория статуса
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-parent" data-id="parent">
+                                                        Родитель
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10009" data-id="customfield_10009">
+                                                        Actual end
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10008" data-id="customfield_10008">
+                                                        Actual start
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10038" data-id="customfield_10038">
+                                                        Affected services
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10003" data-id="customfield_10003">
+                                                        Approvers
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10030" data-id="customfield_10030">
+                                                        Category
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10007" data-id="customfield_10007">
+                                                        Change reason
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10006" data-id="customfield_10006">
+                                                        Change risk
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10005" data-id="customfield_10005">
+                                                        Change type
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10013" data-id="customfield_10013">
+                                                        Epic Color
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10014" data-id="customfield_10014">
+                                                        Epic Link
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10011" data-id="customfield_10011">
+                                                        Epic Name
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10012" data-id="customfield_10012">
+                                                        Epic Status
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10021" data-id="customfield_10021">
+                                                        Flagged
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10004" data-id="customfield_10004">
+                                                        Impact
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10017" data-id="customfield_10017">
+                                                        Issue color
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10026" data-id="customfield_10026">
+                                                        Locked forms
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10027" data-id="customfield_10027">
+                                                        Open forms
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10002" data-id="customfield_10002">
+                                                        Organizations
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10018" data-id="customfield_10018">
+                                                        Parent Link
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10019" data-id="customfield_10019">
+                                                        Rank
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10010" data-id="customfield_10010">
+                                                        Request Type
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10037" data-id="customfield_10037">
+                                                        Request language
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10034" data-id="customfield_10034">
+                                                        Request participants
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10035" data-id="customfield_10035">
+                                                        Satisfaction
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10020" data-id="customfield_10020">
+                                                        Sprint
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10015" data-id="customfield_10015">
+                                                        Start date
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10033" data-id="customfield_10033">
+                                                        Story Points
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10016" data-id="customfield_10016">
+                                                        Story point estimate
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10028" data-id="customfield_10028">
+                                                        Submitted forms
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10023" data-id="customfield_10023">
+                                                        Target end
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10022" data-id="customfield_10022">
+                                                        Target start
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10001" data-id="customfield_10001">
+                                                        Team
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10029" data-id="customfield_10029">
+                                                        Total forms
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10024" data-id="customfield_10024">
+                                                        [CHART] Date of First Response
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10000" data-id="customfield_10000">
+                                                        development
+                                                    </th>
+                                                                    </tr>
+    </thead>
+    <tbody>
+                    
+
+                <tr id="issuerow10019" rel="10019" data-issuekey="MP-11" class="issuerow">
+                                            <td class="project">    Mentol.pro
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MP-11" href="https://bezumec.atlassian.net/browse/MP-11">MP-11</a>
+</td>
+                                            <td class="summary"><p>
+                Съехала вверх кнопка &quot;Twitter&quot; и &quot;Google+&quot;
+    </p>
+</td>
+                                            <td class="issuetype">    Баг
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;К выполнению&lt;/span&gt;">К выполнению</span>    </td>
+                                            <td class="priority">           Low
+    </td>
+                                            <td class="resolution">    <em>Нет решения</em>
+</td>
+                                            <td class="assignee">    <em>Не назначено</em>
+</td>
+                                            <td class="reporter">            Bulat Hafizov
+    </td>
+                                            <td class="creator">            Bulat Hafizov
+    </td>
+                                            <td class="created"> 20/ноя/22 5:23 PM </td>
+                                            <td class="lastViewed"> 20/ноя/22 5:23 PM </td>
+                                            <td class="updated"> 20/ноя/22 5:23 PM </td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="versions">    &nbsp;
+</td>
+                                            <td class="fixVersions">    &nbsp;
+</td>
+                                            <td class="components">    &nbsp;
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="votes">0</td>
+                                            <td class="watches">1</td>
+                                            <td class="thumbnail">            <a href="https://bezumec.atlassian.net/secure/attachment/10020/MP-11.+%D0%A1%D1%8A%D0%B5%D1%85%D0%B0%D0%BB%D0%B0+%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B0+%D0%A2%D0%B2%D0%B8%D1%82%D1%82%D0%B5%D1%80%D0%B0+%D0%B8+Google%2B+768%D1%85886%D1%80%D1%85.png">
+            MP-11. Съехала кнопка Твиттера и Google+ 768х886рх.png
+        </a>
+    </td>
+                                            <td class="timeoriginalestimate"></td>
+                                            <td class="timeestimate"></td>
+                                            <td class="timespent"></td>
+                                            <td class="workratio">&nbsp;
+</td>
+                                            <td class="subtasks"></td>
+                                            <td class="issuelinks"></td>
+                                            <td class="environment">      Google Chrome: 107.0.5304.107
+  </td>
+                                            <td class="description">      В разделе “Новости” под нумерацией страниц при выставлении размера окна 768х808рх съезжает вверх кнопки &quot;Google+&quot; и &quot;Twitter&quot;.<br/>
+<br/>
+Ожидаемый результат: при выставлении размера окна до 768х808рх кнопки &quot;Google+&quot;, “Linkedin”, “Facebook” и “Twitter” должны находиться на одной горизонтальной плоскости.<br/>
+<br/>
+Фактический результат: При выставлении размера окна 768х808рх съезжает вверх кнопки &quot;Google+&quot; и &quot;Twitter&quot;.<br/>
+<br/>
+Локализация: Немецкая и Английская.
+  </td>
+                                            <td class="security"></td>
+                                            <td class="progress"></td>
+                                            <td class="aggregateprogress"></td>
+                                            <td class="aggregatetimespent"></td>
+                                            <td class="aggregatetimeestimate"></td>
+                                            <td class="aggregatetimeoriginalestimate"></td>
+                                            <td class="labels"></td>
+                                            <td class="statuscategorychangedate"> 20/ноя/22 5:23 PM </td>
+                                            <td class="statusCategory">
+    <span class="aui-lozenge aui-lozenge-subtle jira-issue-status-lozenge jira-issue-status-lozenge-blue-gray
+            jira-issue-status-lozenge-max-width-medium">К выполнению</span>
+</td>
+                                            <td class="parent"></td>
+                                            <td class="customfield_10009"></td>
+                                            <td class="customfield_10008"></td>
+                                            <td class="customfield_10038"></td>
+                                            <td class="customfield_10003"></td>
+                                            <td class="customfield_10030"></td>
+                                            <td class="customfield_10007"></td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005"></td>
+                                            <td class="customfield_10013"></td>
+                                            <td class="customfield_10014"></td>
+                                            <td class="customfield_10011"></td>
+                                            <td class="customfield_10012"></td>
+                                            <td class="customfield_10021"></td>
+                                            <td class="customfield_10004"></td>
+                                            <td class="customfield_10017"></td>
+                                            <td class="customfield_10026"></td>
+                                            <td class="customfield_10027"></td>
+                                            <td class="customfield_10002"></td>
+                                            <td class="customfield_10018"></td>
+                                            <td class="customfield_10019">      0|i0003z:
+  </td>
+                                            <td class="customfield_10010"></td>
+                                            <td class="customfield_10037"></td>
+                                            <td class="customfield_10034"></td>
+                                            <td class="customfield_10035"><div class="sd-feedback-rating-column"><span>Нет полномочий</span></div></td>
+                                            <td class="customfield_10020"></td>
+                                            <td class="customfield_10015"></td>
+                                            <td class="customfield_10033"></td>
+                                            <td class="customfield_10016"></td>
+                                            <td class="customfield_10028"></td>
+                                            <td class="customfield_10023"></td>
+                                            <td class="customfield_10022"></td>
+                                            <td class="customfield_10001"></td>
+                                            <td class="customfield_10029"></td>
+                                            <td class="customfield_10024"></td>
+                                            <td class="customfield_10000"></td>
+                    </tr>
+
+
+                <tr id="issuerow10018" rel="10018" data-issuekey="MP-10" class="issuerow">
+                                            <td class="project">    Mentol.pro
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MP-10" href="https://bezumec.atlassian.net/browse/MP-10">MP-10</a>
+</td>
+                                            <td class="summary"><p>
+                Отсутствует перевод в нижнем колонтитуле сайта
+    </p>
+</td>
+                                            <td class="issuetype">    Баг
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;К выполнению&lt;/span&gt;">К выполнению</span>    </td>
+                                            <td class="priority">           Low
+    </td>
+                                            <td class="resolution">    <em>Нет решения</em>
+</td>
+                                            <td class="assignee">    <em>Не назначено</em>
+</td>
+                                            <td class="reporter">            Bulat Hafizov
+    </td>
+                                            <td class="creator">            Bulat Hafizov
+    </td>
+                                            <td class="created"> 20/ноя/22 4:05 PM </td>
+                                            <td class="lastViewed"> 20/ноя/22 4:09 PM </td>
+                                            <td class="updated"> 20/ноя/22 4:05 PM </td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="versions">    &nbsp;
+</td>
+                                            <td class="fixVersions">    &nbsp;
+</td>
+                                            <td class="components">    &nbsp;
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="votes">0</td>
+                                            <td class="watches">1</td>
+                                            <td class="thumbnail">            <a href="https://bezumec.atlassian.net/secure/attachment/10018/MP-10.+%D0%9D%D0%B5+%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%B5%D0%B4%D1%91%D0%BD+%D0%BD%D0%B0+%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9.png">
+            MP-10. Не переведён на английский.png
+        </a>
+    </td>
+                                            <td class="timeoriginalestimate"></td>
+                                            <td class="timeestimate"></td>
+                                            <td class="timespent"></td>
+                                            <td class="workratio">&nbsp;
+</td>
+                                            <td class="subtasks"></td>
+                                            <td class="issuelinks"></td>
+                                            <td class="environment">      Google Chrome: 107.0.5304.107
+  </td>
+                                            <td class="description">      Заголовок “Оставайтесь на связи” не переведен для немецкой и английской локализации.
+  </td>
+                                            <td class="security"></td>
+                                            <td class="progress"></td>
+                                            <td class="aggregateprogress"></td>
+                                            <td class="aggregatetimespent"></td>
+                                            <td class="aggregatetimeestimate"></td>
+                                            <td class="aggregatetimeoriginalestimate"></td>
+                                            <td class="labels">    Баг</td>
+                                            <td class="statuscategorychangedate"> 20/ноя/22 4:05 PM </td>
+                                            <td class="statusCategory">
+    <span class="aui-lozenge aui-lozenge-subtle jira-issue-status-lozenge jira-issue-status-lozenge-blue-gray
+            jira-issue-status-lozenge-max-width-medium">К выполнению</span>
+</td>
+                                            <td class="parent"></td>
+                                            <td class="customfield_10009"></td>
+                                            <td class="customfield_10008"></td>
+                                            <td class="customfield_10038"></td>
+                                            <td class="customfield_10003"></td>
+                                            <td class="customfield_10030"></td>
+                                            <td class="customfield_10007"></td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005"></td>
+                                            <td class="customfield_10013"></td>
+                                            <td class="customfield_10014"></td>
+                                            <td class="customfield_10011"></td>
+                                            <td class="customfield_10012"></td>
+                                            <td class="customfield_10021"></td>
+                                            <td class="customfield_10004"></td>
+                                            <td class="customfield_10017"></td>
+                                            <td class="customfield_10026"></td>
+                                            <td class="customfield_10027"></td>
+                                            <td class="customfield_10002"></td>
+                                            <td class="customfield_10018"></td>
+                                            <td class="customfield_10019">      0|i0003r:
+  </td>
+                                            <td class="customfield_10010"></td>
+                                            <td class="customfield_10037"></td>
+                                            <td class="customfield_10034"></td>
+                                            <td class="customfield_10035"><div class="sd-feedback-rating-column"><span>Нет полномочий</span></div></td>
+                                            <td class="customfield_10020"></td>
+                                            <td class="customfield_10015"></td>
+                                            <td class="customfield_10033"></td>
+                                            <td class="customfield_10016"></td>
+                                            <td class="customfield_10028"></td>
+                                            <td class="customfield_10023"></td>
+                                            <td class="customfield_10022"></td>
+                                            <td class="customfield_10001"></td>
+                                            <td class="customfield_10029"></td>
+                                            <td class="customfield_10024"></td>
+                                            <td class="customfield_10000"></td>
+                    </tr>
+
+
+                <tr id="issuerow10017" rel="10017" data-issuekey="MP-9" class="issuerow">
+                                            <td class="project">    Mentol.pro
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MP-9" href="https://bezumec.atlassian.net/browse/MP-9">MP-9</a>
+</td>
+                                            <td class="summary"><p>
+                При переключении локализации сайта на немецкий, в разделе Nutzungsbedingungen не добавлен текст
+    </p>
+</td>
+                                            <td class="issuetype">    Баг
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;К выполнению&lt;/span&gt;">К выполнению</span>    </td>
+                                            <td class="priority">           Low
+    </td>
+                                            <td class="resolution">    <em>Нет решения</em>
+</td>
+                                            <td class="assignee">    <em>Не назначено</em>
+</td>
+                                            <td class="reporter">            Bulat Hafizov
+    </td>
+                                            <td class="creator">            Bulat Hafizov
+    </td>
+                                            <td class="created"> 20/ноя/22 2:42 PM </td>
+                                            <td class="lastViewed"> 20/ноя/22 4:07 PM </td>
+                                            <td class="updated"> 20/ноя/22 4:06 PM </td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="versions">    &nbsp;
+</td>
+                                            <td class="fixVersions">    &nbsp;
+</td>
+                                            <td class="components">    &nbsp;
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="votes">0</td>
+                                            <td class="watches">1</td>
+                                            <td class="thumbnail">            <a href="https://bezumec.atlassian.net/secure/attachment/10017/MP-9.+%D0%9D%D0%B5%D1%82+%D1%82%D0%B5%D0%BA%D1%81%D1%82%D0%B0+%D0%B2+%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B5+Nutzungsbedingungen.png">
+            MP-9. Нет текста в разделе Nutzungsbedingungen.png
+        </a>
+    </td>
+                                            <td class="timeoriginalestimate"></td>
+                                            <td class="timeestimate"></td>
+                                            <td class="timespent"></td>
+                                            <td class="workratio">&nbsp;
+</td>
+                                            <td class="subtasks"></td>
+                                            <td class="issuelinks"></td>
+                                            <td class="environment">      Google Chrome: 107.0.5304.107
+  </td>
+                                            <td class="description"></td>
+                                            <td class="security"></td>
+                                            <td class="progress"></td>
+                                            <td class="aggregateprogress"></td>
+                                            <td class="aggregatetimespent"></td>
+                                            <td class="aggregatetimeestimate"></td>
+                                            <td class="aggregatetimeoriginalestimate"></td>
+                                            <td class="labels">    Баг</td>
+                                            <td class="statuscategorychangedate"> 20/ноя/22 2:42 PM </td>
+                                            <td class="statusCategory">
+    <span class="aui-lozenge aui-lozenge-subtle jira-issue-status-lozenge jira-issue-status-lozenge-blue-gray
+            jira-issue-status-lozenge-max-width-medium">К выполнению</span>
+</td>
+                                            <td class="parent"></td>
+                                            <td class="customfield_10009"></td>
+                                            <td class="customfield_10008"></td>
+                                            <td class="customfield_10038"></td>
+                                            <td class="customfield_10003"></td>
+                                            <td class="customfield_10030"></td>
+                                            <td class="customfield_10007"></td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005"></td>
+                                            <td class="customfield_10013"></td>
+                                            <td class="customfield_10014"></td>
+                                            <td class="customfield_10011"></td>
+                                            <td class="customfield_10012"></td>
+                                            <td class="customfield_10021"></td>
+                                            <td class="customfield_10004"></td>
+                                            <td class="customfield_10017"></td>
+                                            <td class="customfield_10026"></td>
+                                            <td class="customfield_10027"></td>
+                                            <td class="customfield_10002"></td>
+                                            <td class="customfield_10018"></td>
+                                            <td class="customfield_10019">      0|i0003j:
+  </td>
+                                            <td class="customfield_10010"></td>
+                                            <td class="customfield_10037"></td>
+                                            <td class="customfield_10034"></td>
+                                            <td class="customfield_10035"><div class="sd-feedback-rating-column"><span>Нет полномочий</span></div></td>
+                                            <td class="customfield_10020"></td>
+                                            <td class="customfield_10015"></td>
+                                            <td class="customfield_10033"></td>
+                                            <td class="customfield_10016"></td>
+                                            <td class="customfield_10028"></td>
+                                            <td class="customfield_10023"></td>
+                                            <td class="customfield_10022"></td>
+                                            <td class="customfield_10001"></td>
+                                            <td class="customfield_10029"></td>
+                                            <td class="customfield_10024"></td>
+                                            <td class="customfield_10000"></td>
+                    </tr>
+
+
+                <tr id="issuerow10016" rel="10016" data-issuekey="MP-8" class="issuerow">
+                                            <td class="project">    Mentol.pro
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MP-8" href="https://bezumec.atlassian.net/browse/MP-8">MP-8</a>
+</td>
+                                            <td class="summary"><p>
+                При переключении локализации сайта на немецкий  в разделе Cookies не добавлен текст
+    </p>
+</td>
+                                            <td class="issuetype">    Баг
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;К выполнению&lt;/span&gt;">К выполнению</span>    </td>
+                                            <td class="priority">           Low
+    </td>
+                                            <td class="resolution">    <em>Нет решения</em>
+</td>
+                                            <td class="assignee">    <em>Не назначено</em>
+</td>
+                                            <td class="reporter">            Bulat Hafizov
+    </td>
+                                            <td class="creator">            Bulat Hafizov
+    </td>
+                                            <td class="created"> 20/ноя/22 2:30 PM </td>
+                                            <td class="lastViewed"> 20/ноя/22 4:08 PM </td>
+                                            <td class="updated"> 20/ноя/22 4:08 PM </td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="versions">    &nbsp;
+</td>
+                                            <td class="fixVersions">    &nbsp;
+</td>
+                                            <td class="components">    &nbsp;
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="votes">0</td>
+                                            <td class="watches">1</td>
+                                            <td class="thumbnail">            <a href="https://bezumec.atlassian.net/secure/attachment/10016/MP-8.+%D0%9D%D0%B5%D1%82+%D1%82%D0%B5%D0%BA%D1%81%D1%82%D0%B0+%D0%B2+%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B5+Cookies.png">
+            MP-8. Нет текста в разделе Cookies.png
+        </a>
+    </td>
+                                            <td class="timeoriginalestimate"></td>
+                                            <td class="timeestimate"></td>
+                                            <td class="timespent"></td>
+                                            <td class="workratio">&nbsp;
+</td>
+                                            <td class="subtasks"></td>
+                                            <td class="issuelinks"></td>
+                                            <td class="environment">      Google Chrome: 107.0.5304.107
+  </td>
+                                            <td class="description"></td>
+                                            <td class="security"></td>
+                                            <td class="progress"></td>
+                                            <td class="aggregateprogress"></td>
+                                            <td class="aggregatetimespent"></td>
+                                            <td class="aggregatetimeestimate"></td>
+                                            <td class="aggregatetimeoriginalestimate"></td>
+                                            <td class="labels">    Баг</td>
+                                            <td class="statuscategorychangedate"> 20/ноя/22 2:30 PM </td>
+                                            <td class="statusCategory">
+    <span class="aui-lozenge aui-lozenge-subtle jira-issue-status-lozenge jira-issue-status-lozenge-blue-gray
+            jira-issue-status-lozenge-max-width-medium">К выполнению</span>
+</td>
+                                            <td class="parent"></td>
+                                            <td class="customfield_10009"></td>
+                                            <td class="customfield_10008"></td>
+                                            <td class="customfield_10038"></td>
+                                            <td class="customfield_10003"></td>
+                                            <td class="customfield_10030"></td>
+                                            <td class="customfield_10007"></td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005"></td>
+                                            <td class="customfield_10013"></td>
+                                            <td class="customfield_10014"></td>
+                                            <td class="customfield_10011"></td>
+                                            <td class="customfield_10012"></td>
+                                            <td class="customfield_10021"></td>
+                                            <td class="customfield_10004"></td>
+                                            <td class="customfield_10017"></td>
+                                            <td class="customfield_10026"></td>
+                                            <td class="customfield_10027"></td>
+                                            <td class="customfield_10002"></td>
+                                            <td class="customfield_10018"></td>
+                                            <td class="customfield_10019">      0|i0003b:
+  </td>
+                                            <td class="customfield_10010"></td>
+                                            <td class="customfield_10037"></td>
+                                            <td class="customfield_10034"></td>
+                                            <td class="customfield_10035"><div class="sd-feedback-rating-column"><span>Нет полномочий</span></div></td>
+                                            <td class="customfield_10020"></td>
+                                            <td class="customfield_10015"></td>
+                                            <td class="customfield_10033"></td>
+                                            <td class="customfield_10016"></td>
+                                            <td class="customfield_10028"></td>
+                                            <td class="customfield_10023"></td>
+                                            <td class="customfield_10022"></td>
+                                            <td class="customfield_10001"></td>
+                                            <td class="customfield_10029"></td>
+                                            <td class="customfield_10024"></td>
+                                            <td class="customfield_10000"></td>
+                    </tr>
+
+
+                <tr id="issuerow10015" rel="10015" data-issuekey="MP-7" class="issuerow">
+                                            <td class="project">    Mentol.pro
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MP-7" href="https://bezumec.atlassian.net/browse/MP-7">MP-7</a>
+</td>
+                                            <td class="summary"><p>
+                Нижний колонтитул сайта не выровнен
+    </p>
+</td>
+                                            <td class="issuetype">    Улучшение
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;К выполнению&lt;/span&gt;">К выполнению</span>    </td>
+                                            <td class="priority">           Low
+    </td>
+                                            <td class="resolution">    <em>Нет решения</em>
+</td>
+                                            <td class="assignee">    <em>Не назначено</em>
+</td>
+                                            <td class="reporter">            Bulat Hafizov
+    </td>
+                                            <td class="creator">            Bulat Hafizov
+    </td>
+                                            <td class="created"> 20/ноя/22 1:41 PM </td>
+                                            <td class="lastViewed"> 20/ноя/22 3:45 PM </td>
+                                            <td class="updated"> 20/ноя/22 3:54 PM </td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="versions">    &nbsp;
+</td>
+                                            <td class="fixVersions">    &nbsp;
+</td>
+                                            <td class="components">    &nbsp;
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="votes">0</td>
+                                            <td class="watches">1</td>
+                                            <td class="thumbnail">            <a href="https://bezumec.atlassian.net/secure/attachment/10015/MP-7.+%D0%91%D0%B0%D0%B3+Footer.png">
+            MP-7. Баг Footer.png
+        </a>
+    </td>
+                                            <td class="timeoriginalestimate"></td>
+                                            <td class="timeestimate"></td>
+                                            <td class="timespent"></td>
+                                            <td class="workratio">&nbsp;
+</td>
+                                            <td class="subtasks"></td>
+                                            <td class="issuelinks"></td>
+                                            <td class="environment"></td>
+                                            <td class="description">      В нижнем колонтитуле при использовании окна размером 992x886 пикселей заголовки «Продукты», «Услуги» и «О нас» не выровнены по горизонтали. Заголовки «Услуги» и «О нас» расположены близко друг к другу.<br/>
+<br/>
+Локализация: Русская, Немецкая, Английская.
+  </td>
+                                            <td class="security"></td>
+                                            <td class="progress"></td>
+                                            <td class="aggregateprogress"></td>
+                                            <td class="aggregatetimespent"></td>
+                                            <td class="aggregatetimeestimate"></td>
+                                            <td class="aggregatetimeoriginalestimate"></td>
+                                            <td class="labels">    Улучшение</td>
+                                            <td class="statuscategorychangedate"> 20/ноя/22 1:41 PM </td>
+                                            <td class="statusCategory">
+    <span class="aui-lozenge aui-lozenge-subtle jira-issue-status-lozenge jira-issue-status-lozenge-blue-gray
+            jira-issue-status-lozenge-max-width-medium">К выполнению</span>
+</td>
+                                            <td class="parent"></td>
+                                            <td class="customfield_10009"></td>
+                                            <td class="customfield_10008"></td>
+                                            <td class="customfield_10038"></td>
+                                            <td class="customfield_10003"></td>
+                                            <td class="customfield_10030"></td>
+                                            <td class="customfield_10007"></td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005"></td>
+                                            <td class="customfield_10013"></td>
+                                            <td class="customfield_10014"></td>
+                                            <td class="customfield_10011"></td>
+                                            <td class="customfield_10012"></td>
+                                            <td class="customfield_10021"></td>
+                                            <td class="customfield_10004"></td>
+                                            <td class="customfield_10017"></td>
+                                            <td class="customfield_10026"></td>
+                                            <td class="customfield_10027"></td>
+                                            <td class="customfield_10002"></td>
+                                            <td class="customfield_10018"></td>
+                                            <td class="customfield_10019">      0|i00033:
+  </td>
+                                            <td class="customfield_10010"></td>
+                                            <td class="customfield_10037"></td>
+                                            <td class="customfield_10034"></td>
+                                            <td class="customfield_10035"><div class="sd-feedback-rating-column"><span>Нет полномочий</span></div></td>
+                                            <td class="customfield_10020"></td>
+                                            <td class="customfield_10015"></td>
+                                            <td class="customfield_10033"></td>
+                                            <td class="customfield_10016"></td>
+                                            <td class="customfield_10028"></td>
+                                            <td class="customfield_10023"></td>
+                                            <td class="customfield_10022"></td>
+                                            <td class="customfield_10001"></td>
+                                            <td class="customfield_10029"></td>
+                                            <td class="customfield_10024"></td>
+                                            <td class="customfield_10000"></td>
+                    </tr>
+
+
+                <tr id="issuerow10014" rel="10014" data-issuekey="MP-6" class="issuerow">
+                                            <td class="project">    Mentol.pro
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MP-6" href="https://bezumec.atlassian.net/browse/MP-6">MP-6</a>
+</td>
+                                            <td class="summary"><p>
+                Съехала вверх кнопка Твиттера
+    </p>
+</td>
+                                            <td class="issuetype">    Баг
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;К выполнению&lt;/span&gt;">К выполнению</span>    </td>
+                                            <td class="priority">           Low
+    </td>
+                                            <td class="resolution">    <em>Нет решения</em>
+</td>
+                                            <td class="assignee">    <em>Не назначено</em>
+</td>
+                                            <td class="reporter">            Bulat Hafizov
+    </td>
+                                            <td class="creator">            Bulat Hafizov
+    </td>
+                                            <td class="created"> 18/ноя/22 3:39 PM </td>
+                                            <td class="lastViewed"> 20/ноя/22 5:08 PM </td>
+                                            <td class="updated"> 20/ноя/22 3:45 PM </td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="versions">    &nbsp;
+</td>
+                                            <td class="fixVersions">    &nbsp;
+</td>
+                                            <td class="components">    &nbsp;
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="votes">0</td>
+                                            <td class="watches">2</td>
+                                            <td class="thumbnail">            <a href="https://bezumec.atlassian.net/secure/attachment/10014/MP-6.+%D0%A1%D1%8A%D0%B5%D1%85%D0%B0%D0%BB%D0%B0+%D0%B8%D0%BA%D0%BE%D0%BD%D0%BA%D0%B0+%D0%A2%D0%B2%D0%B8%D1%82%D1%82%D0%B5%D1%80%D0%B0+768%D1%85886%D1%80%D1%85.png">
+            MP-6. Съехала иконка Твиттера 768х886рх.png
+        </a>
+    </td>
+                                            <td class="timeoriginalestimate"></td>
+                                            <td class="timeestimate"></td>
+                                            <td class="timespent"></td>
+                                            <td class="workratio">&nbsp;
+</td>
+                                            <td class="subtasks"></td>
+                                            <td class="issuelinks"></td>
+                                            <td class="environment">      Google Chrome: 107.0.5304.107
+  </td>
+                                            <td class="description">      При выставлении размера окна 768х886рх съезжает вверх кнопка Твиттера.<br/>
+<br/>
+Ожидаемый результат: при изменении размера окна до 768х886рх кнопки Linkedin, facebook и Twitter должны находиться на одной горизонтальной плоскости.<br/>
+<br/>
+Фактический результат: При выставлении размера окна 768х886рх съезжает вверх кнопка Твиттера.<br/>
+<br/>
+Локализация: Русская.
+  </td>
+                                            <td class="security"></td>
+                                            <td class="progress"></td>
+                                            <td class="aggregateprogress"></td>
+                                            <td class="aggregatetimespent"></td>
+                                            <td class="aggregatetimeestimate"></td>
+                                            <td class="aggregatetimeoriginalestimate"></td>
+                                            <td class="labels">    Баг</td>
+                                            <td class="statuscategorychangedate"> 18/ноя/22 3:39 PM </td>
+                                            <td class="statusCategory">
+    <span class="aui-lozenge aui-lozenge-subtle jira-issue-status-lozenge jira-issue-status-lozenge-blue-gray
+            jira-issue-status-lozenge-max-width-medium">К выполнению</span>
+</td>
+                                            <td class="parent"></td>
+                                            <td class="customfield_10009"></td>
+                                            <td class="customfield_10008"></td>
+                                            <td class="customfield_10038"></td>
+                                            <td class="customfield_10003"></td>
+                                            <td class="customfield_10030"></td>
+                                            <td class="customfield_10007"></td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005"></td>
+                                            <td class="customfield_10013"></td>
+                                            <td class="customfield_10014"></td>
+                                            <td class="customfield_10011"></td>
+                                            <td class="customfield_10012"></td>
+                                            <td class="customfield_10021"></td>
+                                            <td class="customfield_10004"></td>
+                                            <td class="customfield_10017"></td>
+                                            <td class="customfield_10026"></td>
+                                            <td class="customfield_10027"></td>
+                                            <td class="customfield_10002"></td>
+                                            <td class="customfield_10018"></td>
+                                            <td class="customfield_10019">      0|i0002v:
+  </td>
+                                            <td class="customfield_10010"></td>
+                                            <td class="customfield_10037"></td>
+                                            <td class="customfield_10034"></td>
+                                            <td class="customfield_10035"><div class="sd-feedback-rating-column"><span>Нет полномочий</span></div></td>
+                                            <td class="customfield_10020"></td>
+                                            <td class="customfield_10015"></td>
+                                            <td class="customfield_10033"></td>
+                                            <td class="customfield_10016"></td>
+                                            <td class="customfield_10028"></td>
+                                            <td class="customfield_10023"></td>
+                                            <td class="customfield_10022"></td>
+                                            <td class="customfield_10001"></td>
+                                            <td class="customfield_10029"></td>
+                                            <td class="customfield_10024"></td>
+                                            <td class="customfield_10000"></td>
+                    </tr>
+
+
+                <tr id="issuerow10013" rel="10013" data-issuekey="MP-5" class="issuerow">
+                                            <td class="project">    Mentol.pro
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MP-5" href="https://bezumec.atlassian.net/browse/MP-5">MP-5</a>
+</td>
+                                            <td class="summary"><p>
+                В шапке сайта под кнопкой поиска есть белая буква Y
+    </p>
+</td>
+                                            <td class="issuetype">    Баг
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;К выполнению&lt;/span&gt;">К выполнению</span>    </td>
+                                            <td class="priority">           Lowest
+    </td>
+                                            <td class="resolution">    <em>Нет решения</em>
+</td>
+                                            <td class="assignee">    <em>Не назначено</em>
+</td>
+                                            <td class="reporter">            Bulat Hafizov
+    </td>
+                                            <td class="creator">            Bulat Hafizov
+    </td>
+                                            <td class="created"> 18/ноя/22 3:16 PM </td>
+                                            <td class="lastViewed"> 20/ноя/22 4:08 PM </td>
+                                            <td class="updated"> 20/ноя/22 3:45 PM </td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="versions">    &nbsp;
+</td>
+                                            <td class="fixVersions">    &nbsp;
+</td>
+                                            <td class="components">    &nbsp;
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="votes">0</td>
+                                            <td class="watches">1</td>
+                                            <td class="thumbnail">            <a href="https://bezumec.atlassian.net/secure/attachment/10013/MP-5.+%D0%9A%D0%BD%D0%BE%D0%BF%D0%BA%D0%B0+%D0%BF%D0%BE%D0%B8%D1%81%D0%BA%D0%B0+%D1%81+%D0%B1%D0%B5%D0%BB%D0%BE%D0%B9+%D0%B1%D1%83%D0%BA%D0%B2%D0%BE%D0%B9+Y.png">
+            MP-5. Кнопка поиска с белой буквой Y.png
+        </a>
+    </td>
+                                            <td class="timeoriginalestimate"></td>
+                                            <td class="timeestimate"></td>
+                                            <td class="timespent"></td>
+                                            <td class="workratio">&nbsp;
+</td>
+                                            <td class="subtasks"></td>
+                                            <td class="issuelinks"></td>
+                                            <td class="environment">      Google Chrome: 107.0.5304.107
+  </td>
+                                            <td class="description">      В шапке сайта под кнопкой поиска есть белая буква Y.<br/>
+<br/>
+Локализация: Русская, Немецкая, Английская.
+  </td>
+                                            <td class="security"></td>
+                                            <td class="progress"></td>
+                                            <td class="aggregateprogress"></td>
+                                            <td class="aggregatetimespent"></td>
+                                            <td class="aggregatetimeestimate"></td>
+                                            <td class="aggregatetimeoriginalestimate"></td>
+                                            <td class="labels">    Баг</td>
+                                            <td class="statuscategorychangedate"> 18/ноя/22 3:16 PM </td>
+                                            <td class="statusCategory">
+    <span class="aui-lozenge aui-lozenge-subtle jira-issue-status-lozenge jira-issue-status-lozenge-blue-gray
+            jira-issue-status-lozenge-max-width-medium">К выполнению</span>
+</td>
+                                            <td class="parent"></td>
+                                            <td class="customfield_10009"></td>
+                                            <td class="customfield_10008"></td>
+                                            <td class="customfield_10038"></td>
+                                            <td class="customfield_10003"></td>
+                                            <td class="customfield_10030"></td>
+                                            <td class="customfield_10007"></td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005"></td>
+                                            <td class="customfield_10013"></td>
+                                            <td class="customfield_10014"></td>
+                                            <td class="customfield_10011"></td>
+                                            <td class="customfield_10012"></td>
+                                            <td class="customfield_10021"></td>
+                                            <td class="customfield_10004"></td>
+                                            <td class="customfield_10017"></td>
+                                            <td class="customfield_10026"></td>
+                                            <td class="customfield_10027"></td>
+                                            <td class="customfield_10002"></td>
+                                            <td class="customfield_10018"></td>
+                                            <td class="customfield_10019">      0|i0002n:
+  </td>
+                                            <td class="customfield_10010"></td>
+                                            <td class="customfield_10037"></td>
+                                            <td class="customfield_10034"></td>
+                                            <td class="customfield_10035"><div class="sd-feedback-rating-column"><span>Нет полномочий</span></div></td>
+                                            <td class="customfield_10020"></td>
+                                            <td class="customfield_10015"></td>
+                                            <td class="customfield_10033"></td>
+                                            <td class="customfield_10016"></td>
+                                            <td class="customfield_10028"></td>
+                                            <td class="customfield_10023"></td>
+                                            <td class="customfield_10022"></td>
+                                            <td class="customfield_10001"></td>
+                                            <td class="customfield_10029"></td>
+                                            <td class="customfield_10024"></td>
+                                            <td class="customfield_10000"></td>
+                    </tr>
+
+
+                <tr id="issuerow10012" rel="10012" data-issuekey="MP-4" class="issuerow">
+                                            <td class="project">    Mentol.pro
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MP-4" href="https://bezumec.atlassian.net/browse/MP-4">MP-4</a>
+</td>
+                                            <td class="summary"><p>
+                При разрешении экрана 992х808px пропадает шапка сайта
+    </p>
+</td>
+                                            <td class="issuetype">    Баг
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;К выполнению&lt;/span&gt;">К выполнению</span>    </td>
+                                            <td class="priority">           High
+    </td>
+                                            <td class="resolution">    <em>Нет решения</em>
+</td>
+                                            <td class="assignee">    <em>Не назначено</em>
+</td>
+                                            <td class="reporter">            Bulat Hafizov
+    </td>
+                                            <td class="creator">            Bulat Hafizov
+    </td>
+                                            <td class="created"> 18/ноя/22 3:00 PM </td>
+                                            <td class="lastViewed"> 20/ноя/22 4:08 PM </td>
+                                            <td class="updated"> 20/ноя/22 3:42 PM </td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="versions">    &nbsp;
+</td>
+                                            <td class="fixVersions">    &nbsp;
+</td>
+                                            <td class="components">    &nbsp;
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="votes">0</td>
+                                            <td class="watches">1</td>
+                                            <td class="thumbnail">            <a href="https://bezumec.atlassian.net/secure/attachment/10012/MP-4.+%D0%9F%D1%80%D0%BE%D0%BF%D0%B0%D0%BB%D0%B0+%D1%88%D0%B0%D0%BF%D0%BA%D0%B0+992%D1%85808%D1%80%D1%85.png">
+            MP-4. Пропала шапка 992х808рх.png
+        </a>
+    </td>
+                                            <td class="timeoriginalestimate"></td>
+                                            <td class="timeestimate"></td>
+                                            <td class="timespent"></td>
+                                            <td class="workratio">&nbsp;
+</td>
+                                            <td class="subtasks"></td>
+                                            <td class="issuelinks"></td>
+                                            <td class="environment">      Google Chrome: 107.0.5304.107
+  </td>
+                                            <td class="description">      При изменении разрешении окна на 992х808px пропадает шапка сайта, за исключением лого.<br/>
+<br/>
+Ожидаемый результат: при изменении разрешении окна на 992х808px и ниже, в шапке сайта должен появиться Hamburger Menu с содержимым шапки.<br/>
+<br/>
+Фактический результат: При изменении разрешении окна на 992х808px пропадает шапка сайта.<br/>
+<br/>
+Локализация: Русская.
+  </td>
+                                            <td class="security"></td>
+                                            <td class="progress"></td>
+                                            <td class="aggregateprogress"></td>
+                                            <td class="aggregatetimespent"></td>
+                                            <td class="aggregatetimeestimate"></td>
+                                            <td class="aggregatetimeoriginalestimate"></td>
+                                            <td class="labels">    Баг</td>
+                                            <td class="statuscategorychangedate"> 18/ноя/22 3:00 PM </td>
+                                            <td class="statusCategory">
+    <span class="aui-lozenge aui-lozenge-subtle jira-issue-status-lozenge jira-issue-status-lozenge-blue-gray
+            jira-issue-status-lozenge-max-width-medium">К выполнению</span>
+</td>
+                                            <td class="parent"></td>
+                                            <td class="customfield_10009"></td>
+                                            <td class="customfield_10008"></td>
+                                            <td class="customfield_10038"></td>
+                                            <td class="customfield_10003"></td>
+                                            <td class="customfield_10030"></td>
+                                            <td class="customfield_10007"></td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005"></td>
+                                            <td class="customfield_10013"></td>
+                                            <td class="customfield_10014"></td>
+                                            <td class="customfield_10011"></td>
+                                            <td class="customfield_10012"></td>
+                                            <td class="customfield_10021"></td>
+                                            <td class="customfield_10004"></td>
+                                            <td class="customfield_10017"></td>
+                                            <td class="customfield_10026"></td>
+                                            <td class="customfield_10027"></td>
+                                            <td class="customfield_10002"></td>
+                                            <td class="customfield_10018"></td>
+                                            <td class="customfield_10019">      0|i0002f:
+  </td>
+                                            <td class="customfield_10010"></td>
+                                            <td class="customfield_10037"></td>
+                                            <td class="customfield_10034"></td>
+                                            <td class="customfield_10035"><div class="sd-feedback-rating-column"><span>Нет полномочий</span></div></td>
+                                            <td class="customfield_10020"></td>
+                                            <td class="customfield_10015"></td>
+                                            <td class="customfield_10033"></td>
+                                            <td class="customfield_10016"></td>
+                                            <td class="customfield_10028"></td>
+                                            <td class="customfield_10023"></td>
+                                            <td class="customfield_10022"></td>
+                                            <td class="customfield_10001"></td>
+                                            <td class="customfield_10029"></td>
+                                            <td class="customfield_10024"></td>
+                                            <td class="customfield_10000"></td>
+                    </tr>
+
+
+                <tr id="issuerow10011" rel="10011" data-issuekey="MP-3" class="issuerow">
+                                            <td class="project">    Mentol.pro
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MP-3" href="https://bezumec.atlassian.net/browse/MP-3">MP-3</a>
+</td>
+                                            <td class="summary"><p>
+                В модуле &quot;Новости&quot; при размере окна 992х808px отсутствует кнопка перелистывания в левую сторону
+    </p>
+</td>
+                                            <td class="issuetype">    Баг
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;К выполнению&lt;/span&gt;">К выполнению</span>    </td>
+                                            <td class="priority">           Low
+    </td>
+                                            <td class="resolution">    <em>Нет решения</em>
+</td>
+                                            <td class="assignee">    <em>Не назначено</em>
+</td>
+                                            <td class="reporter">            Bulat Hafizov
+    </td>
+                                            <td class="creator">            Bulat Hafizov
+    </td>
+                                            <td class="created"> 18/ноя/22 2:05 PM </td>
+                                            <td class="lastViewed"> 20/ноя/22 4:09 PM </td>
+                                            <td class="updated"> 20/ноя/22 3:42 PM </td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="versions">    &nbsp;
+</td>
+                                            <td class="fixVersions">    &nbsp;
+</td>
+                                            <td class="components">    &nbsp;
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="votes">0</td>
+                                            <td class="watches">1</td>
+                                            <td class="thumbnail">            <a href="https://bezumec.atlassian.net/secure/attachment/10011/MP-3.+%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D1%8C+%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8+%D0%BE%D1%82%D1%81%D1%83%D1%82%D1%81%D1%82%D0%B2%D1%83%D0%B5%D1%82+%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8+%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D1%8F+%D0%B2%D0%BB%D0%B5%D0%B2%D0%BE+%28992%D1%85808px%29.png">
+            MP-3. Модуль Новости отсутствует кнопки перемещения влево (992х808px).png
+        </a>
+    </td>
+                                            <td class="timeoriginalestimate"></td>
+                                            <td class="timeestimate"></td>
+                                            <td class="timespent"></td>
+                                            <td class="workratio">&nbsp;
+</td>
+                                            <td class="subtasks"></td>
+                                            <td class="issuelinks"></td>
+                                            <td class="environment">      Google Chrome: 107.0.5304.107
+  </td>
+                                            <td class="description">      На главной странице сайта [https://mentol.pro/ru/|https://mentol.pro/ru/] в модуле “Новости” при размере окна 992х808px отсутствует кнопка перелистывания в левую сторону.<br/>
+<br/>
+Ожидаемый результат: при изменении разрешении окна в модуле “Новости” кнопки перелистывания должны меняться соответсвенно разрешению экрана и не пропадать.<br/>
+<br/>
+Фактический результат: в модуле “Новости” при размере окна 992х808px и ниже, отсутствует кнопка перелистывания в левую сторону.<br/>
+<br/>
+Локализация: Русская.
+  </td>
+                                            <td class="security"></td>
+                                            <td class="progress"></td>
+                                            <td class="aggregateprogress"></td>
+                                            <td class="aggregatetimespent"></td>
+                                            <td class="aggregatetimeestimate"></td>
+                                            <td class="aggregatetimeoriginalestimate"></td>
+                                            <td class="labels">    Баг</td>
+                                            <td class="statuscategorychangedate"> 18/ноя/22 2:05 PM </td>
+                                            <td class="statusCategory">
+    <span class="aui-lozenge aui-lozenge-subtle jira-issue-status-lozenge jira-issue-status-lozenge-blue-gray
+            jira-issue-status-lozenge-max-width-medium">К выполнению</span>
+</td>
+                                            <td class="parent"></td>
+                                            <td class="customfield_10009"></td>
+                                            <td class="customfield_10008"></td>
+                                            <td class="customfield_10038"></td>
+                                            <td class="customfield_10003"></td>
+                                            <td class="customfield_10030"></td>
+                                            <td class="customfield_10007"></td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005"></td>
+                                            <td class="customfield_10013"></td>
+                                            <td class="customfield_10014"></td>
+                                            <td class="customfield_10011"></td>
+                                            <td class="customfield_10012"></td>
+                                            <td class="customfield_10021"></td>
+                                            <td class="customfield_10004"></td>
+                                            <td class="customfield_10017"></td>
+                                            <td class="customfield_10026"></td>
+                                            <td class="customfield_10027"></td>
+                                            <td class="customfield_10002"></td>
+                                            <td class="customfield_10018"></td>
+                                            <td class="customfield_10019">      0|i00027:
+  </td>
+                                            <td class="customfield_10010"></td>
+                                            <td class="customfield_10037"></td>
+                                            <td class="customfield_10034"></td>
+                                            <td class="customfield_10035"><div class="sd-feedback-rating-column"><span>Нет полномочий</span></div></td>
+                                            <td class="customfield_10020"></td>
+                                            <td class="customfield_10015"></td>
+                                            <td class="customfield_10033"></td>
+                                            <td class="customfield_10016"></td>
+                                            <td class="customfield_10028"></td>
+                                            <td class="customfield_10023"></td>
+                                            <td class="customfield_10022"></td>
+                                            <td class="customfield_10001"></td>
+                                            <td class="customfield_10029"></td>
+                                            <td class="customfield_10024"></td>
+                                            <td class="customfield_10000"></td>
+                    </tr>
+
+
+                <tr id="issuerow10010" rel="10010" data-issuekey="MP-2" class="issuerow">
+                                            <td class="project">    Mentol.pro
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MP-2" href="https://bezumec.atlassian.net/browse/MP-2">MP-2</a>
+</td>
+                                            <td class="summary"><p>
+                В модуле &quot;Технологически партнеры&quot; при размере окна 992х808px отсутствует кнопка перелистывания в левую сторону
+    </p>
+</td>
+                                            <td class="issuetype">    Баг
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;К выполнению&lt;/span&gt;">К выполнению</span>    </td>
+                                            <td class="priority">           Low
+    </td>
+                                            <td class="resolution">    <em>Нет решения</em>
+</td>
+                                            <td class="assignee">    <em>Не назначено</em>
+</td>
+                                            <td class="reporter">            Bulat Hafizov
+    </td>
+                                            <td class="creator">            Bulat Hafizov
+    </td>
+                                            <td class="created"> 18/ноя/22 1:51 PM </td>
+                                            <td class="lastViewed"> 20/ноя/22 4:09 PM </td>
+                                            <td class="updated"> 20/ноя/22 3:42 PM </td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="versions">    &nbsp;
+</td>
+                                            <td class="fixVersions">    &nbsp;
+</td>
+                                            <td class="components">    &nbsp;
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="votes">0</td>
+                                            <td class="watches">1</td>
+                                            <td class="thumbnail">            <a href="https://bezumec.atlassian.net/secure/attachment/10010/MP-2.+%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D1%8C+%D0%A2%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5+%D0%BF%D0%B0%D1%80%D1%82%D0%BD%D0%B5%D1%80%D1%8B+%D0%BE%D1%82%D1%81%D1%83%D1%82%D1%81%D1%82%D0%B2%D1%83%D0%B5%D1%82+%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8+%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D1%8F+%D0%B2%D0%BB%D0%B5%D0%B2%D0%BE+%28992%D1%85808px%29.png">
+            MP-2. Модуль Технологические партнеры отсутствует кнопки перемещения влево (992х808px).png
+        </a>
+    </td>
+                                            <td class="timeoriginalestimate"></td>
+                                            <td class="timeestimate"></td>
+                                            <td class="timespent"></td>
+                                            <td class="workratio">&nbsp;
+</td>
+                                            <td class="subtasks"></td>
+                                            <td class="issuelinks"></td>
+                                            <td class="environment">      Google Chrome: 107.0.5304.107
+  </td>
+                                            <td class="description">      На главной странице сайта [https://mentol.pro/ru/|https://mentol.pro/ru/] в модуле “Технологически партнеры” при размере окна 992х808px отсутствует кнопка перелистывания в левую сторону.<br/>
+<br/>
+Ожидаемый результат: при изменении разрешении окна в модуле “Технологически партнеры” кнопки перелистывания должны меняться соответсвенно разрешению экрана и не пропадать.<br/>
+<br/>
+Фактический результат: в модуле “Технологически партнеры” при размере окна 992х808px и ниже, отсутствует кнопка перелистывания в левую сторону.<br/>
+<br/>
+Локализация: Русская.
+  </td>
+                                            <td class="security"></td>
+                                            <td class="progress"></td>
+                                            <td class="aggregateprogress"></td>
+                                            <td class="aggregatetimespent"></td>
+                                            <td class="aggregatetimeestimate"></td>
+                                            <td class="aggregatetimeoriginalestimate"></td>
+                                            <td class="labels">    Баг</td>
+                                            <td class="statuscategorychangedate"> 18/ноя/22 1:51 PM </td>
+                                            <td class="statusCategory">
+    <span class="aui-lozenge aui-lozenge-subtle jira-issue-status-lozenge jira-issue-status-lozenge-blue-gray
+            jira-issue-status-lozenge-max-width-medium">К выполнению</span>
+</td>
+                                            <td class="parent"></td>
+                                            <td class="customfield_10009"></td>
+                                            <td class="customfield_10008"></td>
+                                            <td class="customfield_10038"></td>
+                                            <td class="customfield_10003"></td>
+                                            <td class="customfield_10030"></td>
+                                            <td class="customfield_10007"></td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005"></td>
+                                            <td class="customfield_10013"></td>
+                                            <td class="customfield_10014"></td>
+                                            <td class="customfield_10011"></td>
+                                            <td class="customfield_10012"></td>
+                                            <td class="customfield_10021"></td>
+                                            <td class="customfield_10004"></td>
+                                            <td class="customfield_10017"></td>
+                                            <td class="customfield_10026"></td>
+                                            <td class="customfield_10027"></td>
+                                            <td class="customfield_10002"></td>
+                                            <td class="customfield_10018"></td>
+                                            <td class="customfield_10019">      0|i0001z:
+  </td>
+                                            <td class="customfield_10010"></td>
+                                            <td class="customfield_10037"></td>
+                                            <td class="customfield_10034"></td>
+                                            <td class="customfield_10035"><div class="sd-feedback-rating-column"><span>Нет полномочий</span></div></td>
+                                            <td class="customfield_10020"></td>
+                                            <td class="customfield_10015"></td>
+                                            <td class="customfield_10033"></td>
+                                            <td class="customfield_10016"></td>
+                                            <td class="customfield_10028"></td>
+                                            <td class="customfield_10023"></td>
+                                            <td class="customfield_10022"></td>
+                                            <td class="customfield_10001"></td>
+                                            <td class="customfield_10029"></td>
+                                            <td class="customfield_10024"></td>
+                                            <td class="customfield_10000"></td>
+                    </tr>
+
+
+                <tr id="issuerow10009" rel="10009" data-issuekey="MP-1" class="issuerow">
+                                            <td class="project">    Mentol.pro
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MP-1" href="https://bezumec.atlassian.net/browse/MP-1">MP-1</a>
+</td>
+                                            <td class="summary"><p>
+                Нарушена цикличность UI элемента Карусель &quot;Поддержка ключевых вендоров&quot; на главной странице
+    </p>
+</td>
+                                            <td class="issuetype">    Баг
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;К выполнению&lt;/span&gt;">К выполнению</span>    </td>
+                                            <td class="priority">           Medium
+    </td>
+                                            <td class="resolution">    <em>Нет решения</em>
+</td>
+                                            <td class="assignee">    <em>Не назначено</em>
+</td>
+                                            <td class="reporter">            Bulat Hafizov
+    </td>
+                                            <td class="creator">            Bulat Hafizov
+    </td>
+                                            <td class="created"> 18/ноя/22 10:32 AM </td>
+                                            <td class="lastViewed"> 20/ноя/22 4:09 PM </td>
+                                            <td class="updated"> 20/ноя/22 3:41 PM </td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="versions">    &nbsp;
+</td>
+                                            <td class="fixVersions">    &nbsp;
+</td>
+                                            <td class="components">    &nbsp;
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="votes">0</td>
+                                            <td class="watches">1</td>
+                                            <td class="thumbnail">            <a href="https://bezumec.atlassian.net/secure/attachment/10009/MP-1.+%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B0+%28%D0%BA%D0%B0%D1%80%D1%83%D1%81%D0%B5%D0%BB%D1%8C%29.png">
+            MP-1. Ошибка (карусель).png
+        </a>
+    </td>
+                                            <td class="timeoriginalestimate"></td>
+                                            <td class="timeestimate"></td>
+                                            <td class="timespent"></td>
+                                            <td class="workratio">&nbsp;
+</td>
+                                            <td class="subtasks"></td>
+                                            <td class="issuelinks"></td>
+                                            <td class="environment">      Google Chrome: 107.0.5304.107
+  </td>
+                                            <td class="description">      На главной странице сайта [https://mentol.pro/ru/|https://mentol.pro/ru/] у элемента *&quot;Поддержка ключевых вендоров&quot;* при перелистывании в правую сторону нарушена цикличность, хотя у нижнего элемента _&quot;_*Широкая партнерская сеть&quot;* такой баг отсутствует.<br/>
+Ожидаемый результат: При перелистывании в левую и правую сторон цикличность не должна нарушаться.<br/>
+Фактический результат: При перелистывании в правую сторону цикличность нарушена.<br/>
+<br/>
+Локализация: Русская.
+  </td>
+                                            <td class="security"></td>
+                                            <td class="progress"></td>
+                                            <td class="aggregateprogress"></td>
+                                            <td class="aggregatetimespent"></td>
+                                            <td class="aggregatetimeestimate"></td>
+                                            <td class="aggregatetimeoriginalestimate"></td>
+                                            <td class="labels">    Баг</td>
+                                            <td class="statuscategorychangedate"> 18/ноя/22 10:32 AM </td>
+                                            <td class="statusCategory">
+    <span class="aui-lozenge aui-lozenge-subtle jira-issue-status-lozenge jira-issue-status-lozenge-blue-gray
+            jira-issue-status-lozenge-max-width-medium">К выполнению</span>
+</td>
+                                            <td class="parent"></td>
+                                            <td class="customfield_10009"></td>
+                                            <td class="customfield_10008"></td>
+                                            <td class="customfield_10038"></td>
+                                            <td class="customfield_10003"></td>
+                                            <td class="customfield_10030"></td>
+                                            <td class="customfield_10007"></td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005"></td>
+                                            <td class="customfield_10013"></td>
+                                            <td class="customfield_10014"></td>
+                                            <td class="customfield_10011"></td>
+                                            <td class="customfield_10012"></td>
+                                            <td class="customfield_10021"></td>
+                                            <td class="customfield_10004"></td>
+                                            <td class="customfield_10017"></td>
+                                            <td class="customfield_10026"></td>
+                                            <td class="customfield_10027"></td>
+                                            <td class="customfield_10002"></td>
+                                            <td class="customfield_10018"></td>
+                                            <td class="customfield_10019">      0|i0001r:
+  </td>
+                                            <td class="customfield_10010"></td>
+                                            <td class="customfield_10037"></td>
+                                            <td class="customfield_10034"></td>
+                                            <td class="customfield_10035"><div class="sd-feedback-rating-column"><span>Нет полномочий</span></div></td>
+                                            <td class="customfield_10020"></td>
+                                            <td class="customfield_10015"></td>
+                                            <td class="customfield_10033"></td>
+                                            <td class="customfield_10016"></td>
+                                            <td class="customfield_10028"></td>
+                                            <td class="customfield_10023"></td>
+                                            <td class="customfield_10022"></td>
+                                            <td class="customfield_10001"></td>
+                                            <td class="customfield_10029"></td>
+                                            <td class="customfield_10024"></td>
+                                            <td class="customfield_10000"></td>
+                    </tr>
+        </tbody>
+    </table>
+    <div class="end-of-stable-message"></div>
+            <table border="1" >
+<tr>
+    <td bgcolor="#dddddd" colspan="74"><font size="1">
+        Полученный Sun Nov 20 14:25:02 UTC 2022 Bulat Hafizov используя JIRA 1001.0.0-SNAPSHOT#100210-sha1:9b34d7cc56ccedf37042f403595483f2079121f4.
+    </font></td>
+</tr>
+</table>
+
+</body>
+</html>
